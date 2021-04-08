@@ -116,20 +116,20 @@ void StartTitles()
         txSetTextAlign (TA_CENTER);
         txSetColor (TX_BLACK);
         txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 200, "Азбука");
+        txTextOut (-100 + t * 15, 210, "Азбука");
         txSetColor (TX_BLACK);
         txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 300, "дорожного");
+        txTextOut (-100 + t * 15, 310, "дорожного");
         txSetColor (TX_BLACK);
         txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 400, "движения");
+        txTextOut (-100 + t * 15, 410, "движения");
 
         txSetFillColor (RGB (176, 196, 222));
 
         txSleep (100);
         t++;
         }
-    txSleep (3000);
+    txSleep (300);
     }
 
 void Start()
@@ -196,7 +196,7 @@ void Culmination()
     {
     int t = 0;
 
-    while (t <= 150)
+    while (t <= 100)
         {
         txClear();
         SceneRed_Cener();
