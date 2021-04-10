@@ -125,15 +125,15 @@ void StartTitles()
         DrawCloud_Oblako (1000,  40, 0.8, 0.8, RGB (169, 169, 169));
 
         txSetTextAlign (TA_CENTER);
-        txSetColor (TX_BLACK);
-        txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 210, "Азбука");
-        txSetColor (TX_BLACK);
-        txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 310, "дорожного");
-        txSetColor (TX_BLACK);
-        txSelectFont ("Comic Sans MS", 100);
-        txTextOut (-100 + t * 15, 410, "движения");
+        txSetColor     (TX_BLACK);
+        txSelectFont   ("Comic Sans MS", 100);
+        txTextOut      (-100 + t * 15, 210, "Азбука");
+        txSetColor     (TX_BLACK);
+        txSelectFont   ("Comic Sans MS", 100);
+        txTextOut      (-100 + t * 15, 310, "дорожного");
+        txSetColor     (TX_BLACK);
+        txSelectFont   ("Comic Sans MS", 100);
+        txTextOut      (-100 + t * 15, 410, "движения");
 
         txSetFillColor (RGB (176, 196, 222));
 
@@ -268,8 +268,6 @@ void YellowLight ()
         DrawCar (1200 - t*6, 350,  1, 1, RGB(255, 20, 147));
         DrawCar (   0 + t*5, 450, -1, 1, RGB(  0,  0, 128));
 
-
-
         txSetFillColor (RGB (176, 224, 230));
 
         txSleep (30);
@@ -310,8 +308,8 @@ void Finish ()
         txClear();
         Scene_End();
 
-        DrawCar (600 - t*8, 350,  1, 1, RGB(255, 20, 147));
-        DrawCar (500 + t*9, 450, -1, 1, RGB(  0,  0, 128));
+        DrawCar (600 - t*8, 350,   1, 1, RGB(255, 20, 147));
+        DrawCar (500 + t*9, 450,  -1, 1, RGB(  0,  0, 128));
 
         DrawMan (550 + t*7, 500, 0.5, 1, ((t/2)%2)*35, 0, 1);
         DrawMan (600 + t*7, 520, 0.5, 1, ((t/2)%2)*35, 0, 1, 0, 0, 0, 0, RGB (255, 0, 255));
@@ -334,15 +332,15 @@ void FinishTitles()
         Scene_End();
 
         txSetTextAlign (TA_CENTER);
-        txSetColor (TX_WHITE);
-        txSelectFont ("Comic Sans MS", 40);
-        txTextOut (1300 - t * 4, 550, "Усова Ольга Викторовна");
-        txSetColor (TX_WHITE);
-        txSelectFont ("Comic Sans MS", 40);
-        txTextOut (1300 - t * 4, 590, "учитель информатики");
-        txSetColor (TX_WHITE);
-        txSelectFont ("Comic Sans MS", 40);
-        txTextOut (1300 - t * 4, 630, "МАОУ ООШ №4 г. Соликамск");
+        txSetColor     (TX_WHITE);
+        txSelectFont   ("Comic Sans MS", 40);
+        txTextOut      (1300 - t * 4, 550, "Усова Ольга Викторовна");
+        txSetColor     (TX_WHITE);
+        txSelectFont   ("Comic Sans MS", 40);
+        txTextOut      (1300 - t * 4, 590, "учитель информатики");
+        txSetColor     (TX_WHITE);
+        txSelectFont   ("Comic Sans MS", 40);
+        txTextOut      (1300 - t * 4, 630, "МАОУ ООШ №4 г. Соликамск");
 
         txSetFillColor (RGB (176, 224, 230));
 
@@ -359,7 +357,7 @@ void DrawBand_Polosa (int x, int y, double sizeX, double sizeY)
     {
     txSetColor     (RGB (  0,   0,   0));
     txSetFillColor (RGB (255, 255, 255));
-    txRectangle(x, y, x + 70*sizeX , y + 10*sizeY);
+    txRectangle    (x, y, x + 70*sizeX , y + 10*sizeY);
     }
 
 void DrawRoad ()
@@ -368,12 +366,12 @@ void DrawRoad ()
     txSetFillColor (RGB (105, 105, 105));
     txRectangle    (0, 350, 1200, 550);
 
-    for (int x = 0; x <= 1200; x += 100)
+    for (int x =   0; x <= 1200; x += 100)
         {
         DrawBand_Polosa (x  , 440,   1, 1);
         }
 
-    for (int y = 350; y < 550; y += 45)
+    for (int y = 350;  y <  550; y += 45)
         {
         DrawBand_Polosa (500, y  , 1.5, 2);
         }
@@ -381,11 +379,11 @@ void DrawRoad ()
 
 void DrawCloud_Oblako (int x, int y, double sizeX, double sizeY, COLORREF bodyColor)
     {
-    txSetColor (bodyColor);
+    txSetColor     (bodyColor);
     txSetFillColor (bodyColor);
-    txEllipse (x           , y            , x +  90*sizeX, y +  55*sizeY);
-    txEllipse (x + 40*sizeX, y +  10*sizeY, x + 145*sizeX, y +  75*sizeY);
-    txEllipse (x - 20*sizeX, y +  30*sizeY, x +  80*sizeX, y +  80*sizeY);
+    txEllipse      (x           , y            , x +  90*sizeX, y +  55*sizeY);
+    txEllipse      (x + 40*sizeX, y +  10*sizeY, x + 145*sizeX, y +  75*sizeY);
+    txEllipse      (x - 20*sizeX, y +  30*sizeY, x +  80*sizeX, y +  80*sizeY);
     }
 
 void DrawSun (int x, int y, double sizeX, double sizeY, COLORREF bodyColor, int smail, double surprise, double lengthray, int brow)
@@ -437,19 +435,19 @@ void DrawTree ( int x, int y, double sizeX, double sizeY, COLORREF bodyColor, CO
 
 void DrawBush (int x, int y, double sizeX, double sizeY, COLORREF bodyColor)
     {
-    txSetColor (bodyColor);
+    txSetColor     (bodyColor);
     txSetFillColor (bodyColor);
-    txPie (x            , y           , x +  50*sizeX, y + 50*sizeY, 0, 180);
-    txPie (x +  35*sizeX, y - 15*sizeY, x +  90*sizeX, y + 65*sizeY, 0, 180);
-    txPie (x +  80*sizeX, y - 15*sizeY, x + 135*sizeX, y + 65*sizeY, 0, 180);
-    txPie (x + 125*sizeX,            y, x + 175*sizeX, y + 50*sizeY, 0, 180);
+    txPie          (x            , y           , x +  50*sizeX, y + 50*sizeY, 0, 180);
+    txPie          (x +  35*sizeX, y - 15*sizeY, x +  90*sizeX, y + 65*sizeY, 0, 180);
+    txPie          (x +  80*sizeX, y - 15*sizeY, x + 135*sizeX, y + 65*sizeY, 0, 180);
+    txPie          (x + 125*sizeX,            y, x + 175*sizeX, y + 50*sizeY, 0, 180);
     }
 
 void DrawForest()
     {
     txSetColor     (RGB (50, 205, 50));
     txSetFillColor (RGB (50, 205, 50));
-    txRectangle (0, 200, 1200, 700);
+    txRectangle    (0, 200, 1200, 700);
 
     DrawTree ( 100, 150,    1,   1);
     DrawTree ( 500, 200, -1.2, 1.2);
@@ -506,18 +504,18 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor)
     POINT roof[4] = {{ROUND(x + 50*sizeX), y}, {ROUND(x + 75*sizeX), ROUND(y - 25*sizeY)},
                      {ROUND(x + 155*sizeX), ROUND(y - 25*sizeY)}, {ROUND(x + 170*sizeX), y}};
     txPolygon (roof, 4);
-    txLine (x +  75*sizeX, y - 25*sizeY, x +  75*sizeX, y + 40*sizeY);
-    txLine (x + 155*sizeX, y - 25*sizeY, x + 155*sizeX, y + 40*sizeY);
+    txLine         (x +  75*sizeX, y - 25*sizeY, x +  75*sizeX, y + 40*sizeY);
+    txLine         (x + 155*sizeX, y - 25*sizeY, x + 155*sizeX, y + 40*sizeY);
 
     txSetFillColor (RGB (  0,   0,   0));
-    txCircle (x +  40*sizeX, y + 40*sizeY, 20);
+    txCircle       (x +  40*sizeX, y + 40*sizeY, 20);
     txSetFillColor (RGB (255, 255, 255));
-    txCircle (x +  40*sizeX, y + 40*sizeY, 10);
+    txCircle       (x +  40*sizeX, y + 40*sizeY, 10);
 
     txSetFillColor (RGB (  0,   0,   0));
-    txCircle (x + 170*sizeX, y + 40*sizeY, 20);
+    txCircle       (x + 170*sizeX, y + 40*sizeY, 20);
     txSetFillColor (RGB (255, 255, 255));
-    txCircle (x + 170*sizeX, y + 40*sizeY, 10);
+    txCircle       (x + 170*sizeX, y + 40*sizeY, 10);
     }
 
 void DrawPhrase()
@@ -525,18 +523,18 @@ void DrawPhrase()
     txSetColor     (RGB (255, 255, 255));
     txSetFillColor (RGB (255, 255, 255));
 
-    txCircle (650, 280, 45);
+    txCircle       (650, 280,  45);
     txSetFillColor (RGB (255, 255, 255));
     POINT corner[3] = {{650, 315}, {680,345},{680, 290}};
     txPolygon (corner, 3);
 
     txSetColor     (RGB (  0,   0,   0), 2);
     txSetFillColor (RGB (255,   0,   0));
-    txCircle (630, 280, 10);
+    txCircle       (630, 280,  10);
 
-    txLine (615, 265, 645, 295);
-    txLine (645, 265, 615, 295);
+    txLine         (615, 265, 645, 295);
+    txLine         (645, 265, 615, 295);
 
     txSetFillColor (RGB (  0, 250,   0));
-    txCircle (670, 280, 10);
+    txCircle       (670, 280,  10);
     }
