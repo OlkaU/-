@@ -1,38 +1,39 @@
 #include "TXlib.h"
 
-void DrawBand_Polosa  (int x, int y, double sizeX, double sizeY);
-void DrawCloud_Oblako (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (255, 255, 255));
-void DrawSun          (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
+void DrawBand_Polosa   (int x, int y, double sizeX, double sizeY);
+void DrawCloud_Oblako  (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (255, 255, 255));
+void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
                        int smail,    double surprise, double lengthray, int brow);
-void DrawTree         (int x, int y, double sizeX, double sizeY,
+void DrawTree          (int x, int y, double sizeX, double sizeY,
                        COLORREF bodyColor = RGB (0, 128, 0), COLORREF trunkColor = RGB (139, 69, 19));
-void DrawBush         (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (0, 128, 0));
-void DrawSignal       (int x, int y, COLORREF phanarUpColor = RGB (128, 128, 128),
+void DrawBush          (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (0, 128, 0));
+void DrawSignal        (int x, int y, COLORREF phanarUpColor = RGB (128, 128, 128),
                        COLORREF phanarcenterColor = RGB (128, 128, 128), COLORREF phanarDownColor = RGB (128, 128, 128));
-void DrawMan          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
+void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
-                       int HandDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
-void DrawCar          (int x, int y, double sizeX, double sizeY, COLORREF carColor);
-void DrawPhrase       ();
+                       int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
+void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor);
+void DrawPhrase        ();
 
-void DrawRoad         ();
-void DrawForest       ();
+void DrawRoad          ();
+void DrawForest        ();
 
-void StartTitles      ();
-void Scene_Nach       ();
-void SceneRed_Cener   ();
-void SceneYellow_Cener();
-void SceneGreen_Cener ();
-void Scene_End        ();
+void StartTitles       ();
+void Scene_Nach        ();
+void SceneRed_Cener    ();
+void SceneRed_Sun_Cener();
+void SceneYellow_Cener ();
+void SceneGreen_Cener  ();
+void Scene_End         ();
 
-void Start            ();
-void StepForward      ();
-void Culmination      ();
-void Stepback         ();
-void YellowLight      ();
-void Transition       ();
-void Finish           ();
-void FinishTitles     ();
+void Start             ();
+void StepForward       ();
+void Culmination       ();
+void Stepback          ();
+void YellowLight       ();
+void Transition        ();
+void Finish            ();
+void FinishTitles      ();
 
 
 int main ()
@@ -55,7 +56,6 @@ int main ()
 
     txEnd();
     return 0;
-
     }
 
  //--------------------------------------------------------
@@ -74,11 +74,20 @@ void SceneRed_Cener()
     DrawSignal(605, 250, RGB (250, 0, 0));
     }
 
+void SceneRed_Sun_Cener()
+    {
+    DrawForest();
+    DrawRoad();
+    DrawSignal(605, 250, RGB (250, 0, 0));
+    DrawSun   (1150, 50, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
+    }
+
 void SceneYellow_Cener()
     {
     DrawForest();
     DrawRoad();
     DrawSignal(605, 250, RGB (128, 128, 128), RGB (255, 255, 0));
+    DrawSun   (1150, 50, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
     }
 
 void SceneGreen_Cener()
@@ -155,7 +164,7 @@ void Start()
         DrawCar (1100 - t*15, 350,  1, 1, RGB(255, 20, 147));
         DrawCar (   0 + t*15, 450, -1, 1, RGB(  0,  0, 128));
 
-        DrawMan (600, 520, 1, 1, 0, 0, 0, 60, 0, ((t/2)%2)*30, RGB (255, 0, 255));
+        DrawMan (               600, 520,   1, 1,            0, 0, 0, 60, 0, ((t/2)%2)*30, 0, RGB (255, 0, 255));
 
         txSetFillColor (RGB (176, 196 + t * 0.28, 222 + t * 0.08));
 
@@ -181,15 +190,15 @@ void StepForward()
         DrawCloud_Oblako ( 700 + t*12,  30, 0.4, 0.4);
         DrawCloud_Oblako (1000 + t*12, 100, 0.3, 0.3);
 
+        DrawSun (1300 - ROUND(t * 1.5), 150 - t, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
 
         DrawCar (1800 - t*12, 350,  1, 1, RGB( 75,   0, 130));
         DrawCar (   0 + t*15, 450, -1, 1, RGB(255, 215,   0));
 
-        DrawMan (550, 250 + ROUND(t * 0.5), 1, 1, 1, ((t/2)%2)*5);
-        DrawMan (600, 520                 , 1, 1, 0, 0          , 0, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan (550, 250 + ROUND(t * 0.5), 1, 1, 1, ((t/2)%2)*5, 0,  0, 60,            0, ((t/2)%2)*30);
+        DrawMan (600,                  520, 1, 1, 0,           0, 0, 60,  0, ((t/2)%2)*30,            0, RGB (255, 0, 255));
 
         txSetFillColor (RGB (176, 224, 230));
-
 
         txSleep (100);
         t++;
@@ -204,19 +213,17 @@ void Culmination()
     while (t <= 100)
         {
         txClear();
-        SceneRed_Cener();
-
+        SceneRed_Sun_Cener();
 
         DrawCar (     600, 350,  1, 1, RGB( 75,  0, 130));
         DrawCar (0 + t*10, 450, -1, 1, RGB(255, 69,   0));
 
         DrawMan (550, 300, 1, 1);
-        DrawMan (600, 520, 1, 1, 0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan (600, 520, 1, 1, 0, 0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
 
         DrawPhrase();
 
         txSetFillColor (RGB (176, 224, 230));
-
 
         txSleep (50);
         t++;
@@ -230,16 +237,15 @@ void Stepback()
     while (t <= 100)
         {
         txClear();
-        SceneRed_Cener();
+        SceneRed_Sun_Cener();
 
         DrawMan (550, 300 - ROUND(t * 0.5), 1, 1, 1, ((t/2)%2)*5);
-        DrawMan (600, 520                 , 1, 1, 0, 0          , 0, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan (600,                  520, 1, 1, 0,           0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
 
         DrawCar (600 - t * 12, 350,  1, 1, RGB(75, 0, 130));
         DrawCar (  0 + t * 15, 450, -1, 1, RGB(255, 20, 147));
 
         txSetFillColor (RGB (176, 224, 230));
-
 
         txSleep (100);
         t++;
@@ -257,16 +263,14 @@ void YellowLight ()
         SceneYellow_Cener();
 
         DrawMan ( 550, 250, 1, 1);
-        DrawMan ( 600, 520, 1, 1, 0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan ( 600, 520, 1, 1, 0, 0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
 
         DrawCar (1200 - t*6, 350,  1, 1, RGB(255, 20, 147));
         DrawCar (   0 + t*5, 450, -1, 1, RGB(  0,  0, 128));
 
-        DrawSun (1300 - ROUND(t * 1.5), 150 - t, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
 
 
         txSetFillColor (RGB (176, 224, 230));
-
 
         txSleep (30);
         t++;
@@ -288,10 +292,9 @@ void Transition ()
         DrawCar ( 500, 450, -1, 1, RGB (  0,  0, 128));
 
         DrawMan ( 550, 250 + t*2, 1, 1, 1, ((t/2)%2)*5);
-        DrawMan ( 600, 520, 1, 1, 0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan ( 600,       520, 1, 1, 0,           0, 0, 0, 0, 0, 0, RGB (255, 0, 255));
 
         txSetFillColor (RGB (176, 224, 230));
-
 
         txSleep (100);
         t++;
@@ -307,12 +310,11 @@ void Finish ()
         txClear();
         Scene_End();
 
-
         DrawCar (600 - t*8, 350,  1, 1, RGB(255, 20, 147));
         DrawCar (500 + t*9, 450, -1, 1, RGB(  0,  0, 128));
 
         DrawMan (550 + t*7, 500, 0.5, 1, ((t/2)%2)*35, 0, 1);
-        DrawMan (600 + t*7, 520, 0.5, 1, ((t/2)%2)*35, 0, 1, 0, 0, 0, RGB (255, 0, 255));
+        DrawMan (600 + t*7, 520, 0.5, 1, ((t/2)%2)*35, 0, 1, 0, 0, 0, 0, RGB (255, 0, 255));
 
         txSetFillColor (RGB (176, 224, 230));
 
@@ -454,7 +456,7 @@ void DrawForest()
     DrawTree ( 800, 150,    1,   1);
     DrawTree (1000, 250, -1.5, 1.5);
 
-    DrawBush ( 600, 600,    1,   1);
+    DrawBush ( 600, 620,    1,   1);
     DrawBush ( 250, 250,  0.5, 0.5);
     DrawBush ( 700, 300,  0.7, 0.7);
     DrawBush (1100, 200,  0.5, 0.5);
@@ -477,21 +479,20 @@ void DrawSignal(int x, int y, COLORREF phanarUpColor, COLORREF phanarcenterColor
     txCircle       (x + 10, y - 100, 15);
     }
 
-void DrawMan(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandDistance, COLORREF bodyColor)
+void DrawMan(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
     {
     txSetColor     (RGB (0, 0, 0), 3);
     txSetFillColor (bodyColor);
 
-    txLine         (x + (20*sizeX - 5*locationHand), y           , x + (40 + legsDistanceX)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
-    txRectangle    (x                              , y           , x +  20*sizeX                                   , y + 50*sizeY);
-    txLine         (x +   5 * locationHand         , y           , x - (20 + legsDistanceX + HandDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
+    txLine         (x + (20*sizeX - 5*locationHand), y           , x + (40 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
+    txRectangle    (x                              , y           , x +  20*sizeX                                                  , y + 50*sizeY);
+    txLine         (x +   5*locationHand           , y           , x - (20 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
 
-    txLine         (x +   5*sizeX                  , y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX                  , y + (80 + legsDistanceY) *sizeY);
-    txLine         (x +  15*sizeX                  , y + 50*sizeY, x + (15 + legsDistanceX)*sizeX                  , y + (80 - legsDistanceY)*sizeY);
+    txLine         (x +   5*sizeX                  , y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX                                 , y + (80 + legsDistanceY) *sizeY);
+    txLine         (x +  15*sizeX                  , y + 50*sizeY, x + (15 + legsDistanceX)*sizeX                                 , y + (80 - legsDistanceY)*sizeY);
 
     txSetFillColor (RGB (255, 228, 196));
     txCircle       (x + 10*sizeX, y - 15*sizeY, 15);
-
     }
 
 void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor)
@@ -517,7 +518,6 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor)
     txCircle (x + 170*sizeX, y + 40*sizeY, 20);
     txSetFillColor (RGB (255, 255, 255));
     txCircle (x + 170*sizeX, y + 40*sizeY, 10);
-
     }
 
 void DrawPhrase()
@@ -539,8 +539,4 @@ void DrawPhrase()
 
     txSetFillColor (RGB (  0, 250,   0));
     txCircle (670, 280, 10);
-
     }
-
-
-
