@@ -1,3 +1,14 @@
+//{===========================================================================
+//!
+//!  Мультфильм "Азбука дорожного движения"
+//!
+//!  Первая зачетная работа по КПК
+//!
+//!  2021
+//!
+//! (C) Усова Ольга Викторовна
+//}===========================================================================
+
 #include "TXlib.h"
 
 void DrawBand_Polosa   (int x, int y, double sizeX, double sizeY);
@@ -9,11 +20,9 @@ void DrawTree          (int x, int y, double sizeX, double sizeY,
 void DrawBush          (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (0, 128, 0));
 void DrawSignal        (int x, int y, COLORREF phanarUpColor = RGB (128, 128, 128),
                        COLORREF phanarcenterColor = RGB (128, 128, 128), COLORREF phanarDownColor = RGB (128, 128, 128));
-
 void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
                        int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
-
 void DrawGirl          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
                        int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (255, 0, 255));
@@ -143,7 +152,7 @@ void StartTitles ()
         txSelectFont   ("Comic Sans MS", 100);
         txTextOut      (-100 + t * 15, 410, "движения");
 
-        txSetFillColor (RGB (176, 196, 222));
+        txSetFillColor (RGB (70, 130, 180));
 
         txSleep (100);
         t++;
@@ -174,7 +183,8 @@ void Start ()
 
         DrawGirl (600, 520, 1, 1, 0, 0, 0, 60, 0, ((t/2)%2)*30);
 
-        txSetFillColor (RGB (176, 196 + t * 0.28, 222 + t * 0.08));
+        txSetFillColor (RGB (70 + t * 1.06, 130 + t * 0.94, 180 + t * 0.5));
+        //txSetFillColor (RGB (176, 196 + t * 0.28, 222 + t * 0.08));
 
         txSleep (100);
         t++;
