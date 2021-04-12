@@ -10,4 +10,6 @@
 * Дорога
 * Светофор
 
+![Начало](https://user-images.githubusercontent.com/82168961/114427872-f58d9200-9bd4-11eb-9a7c-78a9481839b4.JPG)
+
 
