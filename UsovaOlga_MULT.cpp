@@ -55,9 +55,6 @@ int main ()
     txCreateWindow (1200, 700);
     txBegin ();
 
-    txSetFillColor (RGB (176, 224, 230));
-    txClear ();
-
     StartTitles ();
     Start ();
     StepForward ();
@@ -69,6 +66,7 @@ int main ()
     FinishTitles() ;
 
     txEnd ();
+
     return 0;
     }
 
@@ -139,17 +137,13 @@ void StartTitles ()
         DrawCloud_Oblako (1000,  40, 0.8, 0.8, RGB (169, 169, 169));
 
         txSetTextAlign (TA_CENTER);
-
         txSetColor     (TX_BLACK);
         txSelectFont   ("Comic Sans MS", 100);
+
         txTextOut      (-100 + t * 15, 210, "Азбука");
 
-        txSetColor     (TX_BLACK);
-        txSelectFont   ("Comic Sans MS", 100);
         txTextOut      (-100 + t * 15, 310, "дорожного");
 
-        txSetColor     (TX_BLACK);
-        txSelectFont   ("Comic Sans MS", 100);
         txTextOut      (-100 + t * 15, 410, "движения");
 
         txSetFillColor (RGB (70, 130, 180));
@@ -157,6 +151,7 @@ void StartTitles ()
         txSleep (100);
         t++;
         }
+
     txSleep (300);
     }
 
@@ -339,6 +334,7 @@ void Finish ()
         txSleep (100);
         t++;
         }
+
     txSleep (3000);
     }
 
@@ -350,18 +346,15 @@ void FinishTitles ()
         {
         txClear ();
         Scene_End ();
-        txSetTextAlign (TA_CENTER);
 
+        txSetTextAlign (TA_CENTER);
         txSetColor     (TX_WHITE);
         txSelectFont   ("Comic Sans MS", 40);
+
         txTextOut      (1300 - t * 4, 550, "Усова Ольга Викторовна");
 
-        txSetColor     (TX_WHITE);
-        txSelectFont   ("Comic Sans MS", 40);
         txTextOut      (1300 - t * 4, 590, "учитель информатики");
 
-        txSetColor     (TX_WHITE);
-        txSelectFont   ("Comic Sans MS", 40);
         txTextOut      (1300 - t * 4, 630, "МАОУ ООШ №4 г. Соликамск");
 
         txSetFillColor (RGB (176, 224, 230));
