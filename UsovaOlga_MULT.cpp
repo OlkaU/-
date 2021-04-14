@@ -184,7 +184,6 @@ void Start ()
         DrawGirl (600, 520, 1, 1, 0, 0, 0, 60, 0, ((t/2)%2)*30);
 
         txSetFillColor (RGB (70 + t * 1.06, 130 + t * 0.94, 180 + t * 0.5));
-        //txSetFillColor (RGB (176, 196 + t * 0.28, 222 + t * 0.08));
 
         txSleep (100);
         t++;
