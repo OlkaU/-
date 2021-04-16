@@ -26,7 +26,7 @@ void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistan
 void DrawGirl          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
                        int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (255, 0, 255));
-void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor);
+void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel = 0);
 void DrawPhrase        ();
 
 void DrawRoad          ();
@@ -173,8 +173,8 @@ void Start ()
 
         DrawMan  (0 + ROUND(5.5 * t), 250, 0.5, 1, ((t/2)%2)*35, 0, 1);
 
-        DrawCar  (1100 - t*15, 350,  1, 1, RGB(255, 140,   0));
-        DrawCar  (   0 + t*15, 450, -1, 1, RGB(  0,   0, 128));
+        DrawCar  (1100 - t*15, 350,  1, 1, RGB(255, 140,   0), ((t/7)%2)*3);
+        DrawCar  (   0 + t*15, 450, -1, 1, RGB(  0,   0, 128), ((t/7)%2)*3);
 
         DrawGirl (600, 520, 1, 1, 0, 0, 0, 60, 0, ((t/2)%2)*30);
 
@@ -204,8 +204,8 @@ void StepForward ()
 
         DrawSun  (1300 - ROUND(t * 1.5), 150 - t, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
 
-        DrawCar  (1800 - t*12, 350,  1, 1, RGB( 75,   0, 130));
-        DrawCar  (   0 + t*15, 450, -1, 1, RGB(255, 215,   0));
+        DrawCar  (1800 - t*12, 350,  1, 1, RGB( 75,   0, 130), ((t/7)%2)*3);
+        DrawCar  (   0 + t*15, 450, -1, 1, RGB(255, 215,   0), ((t/7)%2)*3);
 
         DrawMan  (550, 250 + ROUND(t * 0.5), 1, 1, 1, ((t/2)%2)*5, 0,  0, 60,            0, ((t/2)%2)*30);
         DrawGirl (600,                  520, 1, 1, 0,           0, 0, 60,  0, ((t/2)%2)*30);
@@ -228,7 +228,7 @@ void Culmination ()
         SceneRed_Sun_Cener ();
 
         DrawCar (600,      350,  1, 1, RGB( 75,  0, 130));
-        DrawCar (0 + t*15, 450, -1, 1, RGB(255, 69,   0));
+        DrawCar (0 + t*15, 450, -1, 1, RGB(255, 69,   0), ((t/7)%2)*3);
 
         DrawMan  (550, 300, 1, 1);
         DrawGirl (600, 520, 1, 1);
@@ -253,8 +253,8 @@ void Stepback ()
 
         DrawMan  (550, 300 - ROUND(t * 0.5), 1, 1, 1, ((t/2)%2)*5);
 
-        DrawCar  (600 - t * 12, 350,  1, 1, RGB( 75,   0, 130));
-        DrawCar  (  0 + t * 15, 450, -1, 1, RGB(240, 128, 128));
+        DrawCar  (600 - t * 12, 350,  1, 1, RGB( 75,   0, 130), ((t/7)%2)*3);
+        DrawCar  (  0 + t * 15, 450, -1, 1, RGB(240, 128, 128), ((t/7)%2)*3);
 
         DrawGirl (600, 520, 1, 1);
 
@@ -278,8 +278,8 @@ void YellowLight ()
         DrawMan  (550, 250, 1, 1);
 
 
-        DrawCar  (1200 - t*6, 350,  1, 1, RGB(0, 255,   0));
-        DrawCar  (   0 + t*5, 450, -1, 1, RGB(0,   0, 128));
+        DrawCar  (1200 - t*6, 350,  1, 1, RGB(0, 255,   0), ((t/7)%2)*3);
+        DrawCar  (   0 + t*5, 450, -1, 1, RGB(0,   0, 128), ((t/7)%2)*3);
 
         DrawGirl (600, 520, 1, 1);
 
@@ -323,8 +323,8 @@ void Finish ()
         txClear ();
         Scene_End ();
 
-        DrawCar  (600 - t*8, 350,   1, 1, RGB(  0, 255,   0));
-        DrawCar  (500 + t*9, 450,  -1, 1, RGB(  0,   0, 128));
+        DrawCar  (600 - t*8, 350,   1, 1, RGB(  0, 255,   0), ((t/7)%2)*3);
+        DrawCar  (500 + t*9, 450,  -1, 1, RGB(  0,   0, 128), ((t/7)%2)*3);
 
         DrawMan  (550 + t*7, 500, 0.5, 1, ((t/2)%2)*35, 0, 1);
         DrawGirl (600 + t*7, 520, 0.5, 1, ((t/2)%2)*35, 0, 1);
@@ -534,7 +534,7 @@ void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
     txCircle       (x, y - 15*sizeY, 15);
     }
 
-void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor)
+void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel)
     {
     txSetColor     (RGB (  0,   0,   0), 3);
     txSetFillColor (carColor);
@@ -549,14 +549,14 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor)
     txLine         (x + 155*sizeX, y - 25*sizeY, x + 155*sizeX, y + 40*sizeY);
 
     txSetFillColor (RGB (  0,   0,   0));
-    txCircle       (x +  40*sizeX, y + 40*sizeY, 20);
+    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 20);
     txSetFillColor (RGB (255, 255, 255));
-    txCircle       (x +  40*sizeX, y + 40*sizeY, 10);
+    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 10);
 
     txSetFillColor (RGB (  0,   0,   0));
-    txCircle       (x + 170*sizeX, y + 40*sizeY, 20);
+    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 20);
     txSetFillColor (RGB (255, 255, 255));
-    txCircle       (x + 170*sizeX, y + 40*sizeY, 10);
+    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 10);
     }
 
 void DrawPhrase ()
