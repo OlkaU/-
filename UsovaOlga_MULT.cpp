@@ -118,7 +118,9 @@ void Scene_End ()
     DrawSun (1150, 50, 1, 1, RGB (255, 255, 0), 1, 0, 1, 1);
     }
 
+
 //--------------------------------------------------------
+
 
 void StartTitles ()
     {
@@ -277,7 +279,6 @@ void YellowLight ()
 
         DrawMan  (550, 250, 1, 1);
 
-
         DrawCar  (1200 - t*6, 350,  1, 1, RGB(0, 255,   0), ((t/7)%2)*3);
         DrawCar  (   0 + t*5, 450, -1, 1, RGB(0,   0, 128), ((t/7)%2)*3);
 
@@ -366,39 +367,77 @@ void FinishTitles ()
     txSleep (3000);
     }
 
+
 //--------------------------------------------------------
 
-void DrawBand_Polosa (int x, int y, double sizeX, double sizeY)
+
+void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
     {
-    txSetColor     (RGB (  0,   0,   0));
-    txSetFillColor (RGB (255, 255, 255));
-    txRectangle    (x, y, x + 70*sizeX , y + 10*sizeY);
-    }
-
-void DrawRoad ()
-    {
-    txSetColor     (RGB (  0,   0,  0));
-    txSetFillColor (RGB (105, 105, 105));
-    txRectangle    (0, 350, 1200, 550);
-
-    for (int x = 0;    x <= 1200; x += 100)
-        {
-        DrawBand_Polosa (x  , 440,   1, 1);
-        }
-
-    for (int y = 350;  y <  550; y += 45)
-        {
-        DrawBand_Polosa (500, y  , 1.5, 2);
-        }
-    }
-
-void DrawCloud_Oblako (int x, int y, double sizeX, double sizeY, COLORREF bodyColor)
-    {
-    txSetColor     (bodyColor);
+    txSetColor     (RGB (0, 0, 0), 3);
     txSetFillColor (bodyColor);
-    txEllipse      (x,            y,             x +  90*sizeX, y +  55*sizeY);
-    txEllipse      (x + 40*sizeX, y +  10*sizeY, x + 145*sizeX, y +  75*sizeY);
-    txEllipse      (x - 20*sizeX, y +  30*sizeY, x +  80*sizeX, y +  80*sizeY);
+
+    txLine         (x + (20*sizeX - 5*locationHand), y,            x + (40 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
+    txRectangle    (x,                               y,            x +  20*sizeX,                                                    y + 50*sizeY);
+    txLine         (x +   5*locationHand,            y,            x - (20 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
+
+    txLine         (x +   5*sizeX,                   y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX,                                   y + (80 + legsDistanceY) *sizeY);
+    txLine         (x +  15*sizeX,                   y + 50*sizeY, x + (15 + legsDistanceX)*sizeX,                                   y + (80 - legsDistanceY)*sizeY);
+
+    txSetFillColor (RGB (255, 228, 196));
+    txCircle       (x + 10*sizeX, y - 15*sizeY, 15);
+    }
+
+
+void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
+    {
+    txSetColor     (RGB (0, 0, 0), 3);
+    txSetFillColor (bodyColor);
+
+    txLine (x + (5*sizeX - 5*locationHand), y,            x + (35 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
+
+    POINT body[4] = {{ROUND (x - 5*sizeX), y}, {ROUND (x + 5*sizeX), y},
+                    {ROUND (x + 25*sizeX), ROUND (y + 50*sizeY)}, {ROUND (x - 25*sizeX), ROUND (y + 50*sizeY)}};
+    txPolygon (body, 4);
+
+    txSetFillColor (RGB (255, 182, 193));
+    POINT bow[5] = {{x, ROUND (y - 30*sizeY)}, {ROUND (x + 15*sizeX), ROUND (y - 25*sizeY)},
+                    {ROUND (x + 15*sizeX), ROUND (y - 40*sizeY)}, {ROUND (x - 15*sizeX), ROUND (y - 25*sizeY)},
+                    {ROUND (x - 15*sizeX), ROUND (y - 40*sizeY)}};
+    txPolygon (bow, 5);
+
+    txLine (x - 5 + locationHand,           y,            x - (35 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
+
+    txLine (x - 5*sizeX,                    y + 50*sizeY, x - (5 + legsDistanceX)*sizeX,                                    y + (80 + legsDistanceY) *sizeY);
+    txLine (x + 5*sizeX,                    y + 50*sizeY, x + (5 + legsDistanceX)*sizeX,                                    y + (80 - legsDistanceY)*sizeY);
+
+    txSetFillColor (RGB (255, 228, 196));
+    txCircle       (x, y - 15*sizeY, 15);
+    }
+
+
+void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel)
+    {
+    txSetColor     (RGB (  0,   0,   0), 3);
+    txSetFillColor (carColor);
+
+    txRectangle    (x, y, x + 200*sizeX, y + 40*sizeY);
+
+    txSetFillColor (RGB (255, 255, 255));
+    POINT roof[4] = {{ROUND (x + 50*sizeX), y}, {ROUND (x + 75*sizeX), ROUND(y - 25*sizeY)},
+                     {ROUND (x + 155*sizeX), ROUND (y - 25*sizeY)}, {ROUND (x + 170*sizeX), y}};
+    txPolygon (roof, 4);
+    txLine         (x +  75*sizeX, y - 25*sizeY, x +  75*sizeX, y + 40*sizeY);
+    txLine         (x + 155*sizeX, y - 25*sizeY, x + 155*sizeX, y + 40*sizeY);
+
+    txSetFillColor (RGB (  0,   0,   0));
+    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 20);
+    txSetFillColor (RGB (255, 255, 255));
+    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 10);
+
+    txSetFillColor (RGB (  0,   0,   0));
+    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 20);
+    txSetFillColor (RGB (255, 255, 255));
+    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 10);
     }
 
 void DrawSun (int x, int y, double sizeX, double sizeY, COLORREF bodyColor, int smail, double surprise, double lengthray, int brow)
@@ -431,6 +470,42 @@ void DrawSun (int x, int y, double sizeX, double sizeY, COLORREF bodyColor, int 
     txSetColor     (RGB (139, 69, 19), 2);
     txLine         (x - 25*sizeX, y - 30*sizeY, x - 5*sizeX, y - (30 + brow)*sizeY);
     txLine         (x + 25*sizeX, y - 30*sizeY, x + 5*sizeX, y - (30 + brow)*sizeY);
+    }
+
+
+//-----------------------------------------------------------------------------
+
+void DrawBand_Polosa (int x, int y, double sizeX, double sizeY)
+    {
+    txSetColor     (RGB (  0,   0,   0));
+    txSetFillColor (RGB (255, 255, 255));
+    txRectangle    (x, y, x + 70*sizeX , y + 10*sizeY);
+    }
+
+void DrawRoad ()
+    {
+    txSetColor     (RGB (  0,   0,  0));
+    txSetFillColor (RGB (105, 105, 105));
+    txRectangle    (0, 350, 1200, 550);
+
+    for (int x = 0;    x <= 1200; x += 100)
+        {
+        DrawBand_Polosa (x  , 440,   1, 1);
+        }
+
+    for (int y = 350;  y <  550; y += 45)
+        {
+        DrawBand_Polosa (500, y  , 1.5, 2);
+        }
+    }
+
+void DrawCloud_Oblako (int x, int y, double sizeX, double sizeY, COLORREF bodyColor)
+    {
+    txSetColor     (bodyColor);
+    txSetFillColor (bodyColor);
+    txEllipse      (x,            y,             x +  90*sizeX, y +  55*sizeY);
+    txEllipse      (x + 40*sizeX, y +  10*sizeY, x + 145*sizeX, y +  75*sizeY);
+    txEllipse      (x - 20*sizeX, y +  30*sizeY, x +  80*sizeX, y +  80*sizeY);
     }
 
 void DrawTree ( int x, int y, double sizeX, double sizeY, COLORREF bodyColor, COLORREF trunkColor)
@@ -492,72 +567,6 @@ void DrawSignal(int x, int y, COLORREF phanarUpColor, COLORREF phanarcenterColor
     txCircle       (x + 10, y - 100, 15);
     }
 
-void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
-    {
-    txSetColor     (RGB (0, 0, 0), 3);
-    txSetFillColor (bodyColor);
-
-    txLine         (x + (20*sizeX - 5*locationHand), y,            x + (40 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
-    txRectangle    (x,                               y,            x +  20*sizeX,                                                    y + 50*sizeY);
-    txLine         (x +   5*locationHand,            y,            x - (20 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
-
-    txLine         (x +   5*sizeX,                   y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX,                                   y + (80 + legsDistanceY) *sizeY);
-    txLine         (x +  15*sizeX,                   y + 50*sizeY, x + (15 + legsDistanceX)*sizeX,                                   y + (80 - legsDistanceY)*sizeY);
-
-    txSetFillColor (RGB (255, 228, 196));
-    txCircle       (x + 10*sizeX, y - 15*sizeY, 15);
-    }
-
-void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
-    {
-    txSetColor     (RGB (0, 0, 0), 3);
-    txSetFillColor (bodyColor);
-
-    txLine (x + (5*sizeX - 5*locationHand), y,            x + (35 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
-
-    POINT body[4] = {{ROUND (x - 5*sizeX), y}, {ROUND (x + 5*sizeX), y},
-                    {ROUND (x + 25*sizeX), ROUND (y + 50*sizeY)}, {ROUND (x - 25*sizeX), ROUND (y + 50*sizeY)}};
-    txPolygon (body, 4);
-
-    txSetFillColor (RGB (255, 182, 193));
-    POINT bow[5] = {{x, ROUND (y - 30*sizeY)}, {ROUND (x + 15*sizeX), ROUND (y - 25*sizeY)},
-                    {ROUND (x + 15*sizeX), ROUND (y - 40*sizeY)}, {ROUND (x - 15*sizeX), ROUND (y - 25*sizeY)},
-                    {ROUND (x - 15*sizeX), ROUND (y - 40*sizeY)}};
-    txPolygon (bow, 5);
-
-    txLine (x - 5 + locationHand,           y,            x - (35 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
-
-    txLine (x - 5*sizeX,                    y + 50*sizeY, x - (5 + legsDistanceX)*sizeX,                                    y + (80 + legsDistanceY) *sizeY);
-    txLine (x + 5*sizeX,                    y + 50*sizeY, x + (5 + legsDistanceX)*sizeX,                                    y + (80 - legsDistanceY)*sizeY);
-
-    txSetFillColor (RGB (255, 228, 196));
-    txCircle       (x, y - 15*sizeY, 15);
-    }
-
-void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel)
-    {
-    txSetColor     (RGB (  0,   0,   0), 3);
-    txSetFillColor (carColor);
-
-    txRectangle    (x, y, x + 200*sizeX, y + 40*sizeY);
-
-    txSetFillColor (RGB (255, 255, 255));
-    POINT roof[4] = {{ROUND (x + 50*sizeX), y}, {ROUND (x + 75*sizeX), ROUND(y - 25*sizeY)},
-                     {ROUND (x + 155*sizeX), ROUND (y - 25*sizeY)}, {ROUND (x + 170*sizeX), y}};
-    txPolygon (roof, 4);
-    txLine         (x +  75*sizeX, y - 25*sizeY, x +  75*sizeX, y + 40*sizeY);
-    txLine         (x + 155*sizeX, y - 25*sizeY, x + 155*sizeX, y + 40*sizeY);
-
-    txSetFillColor (RGB (  0,   0,   0));
-    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 20);
-    txSetFillColor (RGB (255, 255, 255));
-    txCircle       (x +  40*sizeX, y + 40*sizeY - movewheel, 10);
-
-    txSetFillColor (RGB (  0,   0,   0));
-    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 20);
-    txSetFillColor (RGB (255, 255, 255));
-    txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 10);
-    }
 
 void DrawPhrase ()
     {
