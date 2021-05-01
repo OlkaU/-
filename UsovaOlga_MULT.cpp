@@ -60,6 +60,7 @@ int main ()
     txEnd ();
 
     return 0;
+
     }
 
  //{--------------------------------------------------------
@@ -111,7 +112,6 @@ void Scene_End ()
     }
 
 //}--------------------------------------------------------
-
 
 void StartTitles ()
     {
@@ -176,6 +176,7 @@ void Start ()
         txSleep (100);
         t++;
         }
+
     }
 
 void StepForward ()
@@ -213,7 +214,7 @@ void StepForward ()
 void Culmination ()
     {
     int t = 0;
-    txPlaySound ("sound.wav");
+    txPlaySound ("Sounds/sound.wav");
 
     while (t <= 80)
         {
@@ -234,6 +235,7 @@ void Culmination ()
         t++;
 
         }
+
     txPlaySound (NULL);
     }
 
@@ -282,6 +284,7 @@ void YellowLight ()
         txSleep (30);
         t++;
         }
+
     }
 
 void Transition ()
@@ -306,6 +309,7 @@ void Transition ()
         txSleep (100);
         t++;
         }
+
     }
 
 void Finish ()
