@@ -5,30 +5,71 @@ void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistan
                        int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
 void DrawGirl          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
-                       int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (255, 0, 255));
+                       int HandRDistance = 0, int HandLDistance = 0,
+                       COLORREF bodyColor = RGB (255, 0, 255),COLORREF bowColor = RGB (255, 182, 193));
 void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel = 0);
 void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
                        int smail,    double surprise, double lengthray, int brow);
 
 
+//{=============================================================================
+//! Рисуем Мальчика
+//!
+//! @param x                   х-координата левого верхнего угла тела Мальчика
+//! @param y                   у-координата левого верхнего угла тела Мальчика
+//! @param sizeX               размер Мальчика по оси Х
+//! @param sizeY               размер Мальчика по оси Y
+//! @param legsDistanceX       изменение расстояния между ног по оси Х
+//! @param legsDistanceY       изменение расстояния между ног по оси Y
+//! @param locationHand        изменение расстояния между рук,
+//! @param rHandUp             движение правой руки вверх-вниз
+//! @param lHandUp             движение левой руки вверх-вниз
+//! @param HandRDistance       движение правой руки лево-право
+//! @param HandLDistance       движение левой руки лево-право
+//! @param COLORREF bodyColor  цвет одежды Мальчика
+//!
+//}=============================================================================
 
-void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
+void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY,
+              int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance,
+              COLORREF bodyColor)
     {
     txSetColor     (RGB (0, 0, 0), 3);
     txSetFillColor (bodyColor);
 
-    txLine         (x + (20*sizeX - 5*locationHand), y,            x + (40 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
-    txRectangle    (x,                               y,            x +  20*sizeX,                                                    y + 50*sizeY);
-    txLine         (x +   5*locationHand,            y,            x - (20 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
+    txLine      (x + (20*sizeX - 5*locationHand), y, x + (40 + legsDistanceX + HandLDistance)*sizeX - 15*locationHand, y + (30 - lHandUp)*sizeY);
+    txRectangle (x,                               y, x +  20*sizeX,                                                    y + 50*sizeY);
+    txLine      (x +   5*locationHand,            y, x - (20 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
 
-    txLine         (x +   5*sizeX,                   y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX,                                   y + (80 + legsDistanceY) *sizeY);
-    txLine         (x +  15*sizeX,                   y + 50*sizeY, x + (15 + legsDistanceX)*sizeX,                                   y + (80 - legsDistanceY)*sizeY);
+    txLine (x +   5*sizeX, y + 50*sizeY, x + ( 5 - legsDistanceX)*sizeX, y + (80 + legsDistanceY) *sizeY);
+    txLine (x +  15*sizeX, y + 50*sizeY, x + (15 + legsDistanceX)*sizeX, y + (80 - legsDistanceY)*sizeY);
 
     txSetFillColor (RGB (255, 228, 196));
     txCircle       (x + 10*sizeX, y - 15*sizeY, 15);
     }
 
-void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY, int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance, COLORREF bodyColor)
+//{=============================================================================
+//! Рисуем Девочку
+//!
+//! @param x                   х-координата вершины туловища Девочки
+//! @param y                   у-координата вершины туловища Девочки
+//! @param sizeX               размер Девочки по оси Х
+//! @param sizeY               размер Девочки по оси Y
+//! @param legsDistanceX       изменение расстояния между ног по оси Х
+//! @param legsDistanceY       изменение расстояния между ног по оси Y
+//! @param locationHand        изменение расстояния между рук,
+//! @param rHandUp             движение правой руки вверх-вниз
+//! @param lHandUp             движение левой руки вверх-вниз
+//! @param HandRDistance       движение правой руки лево-право
+//! @param HandLDistance       движение левой руки лево-право
+//! @param COLORREF bodyColor  цвет платья Девочки
+//! @param COLORREF bowColor   цвет бантика Девочки
+//!
+//}=============================================================================
+
+void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY,
+              int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance,
+              COLORREF bodyColor, COLORREF bowColor)
     {
     txSetColor     (RGB (0, 0, 0), 3);
     txSetFillColor (bodyColor);
@@ -39,16 +80,16 @@ void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
                     {ROUND (x + 25*sizeX), ROUND (y + 50*sizeY)}, {ROUND (x - 25*sizeX), ROUND (y + 50*sizeY)}};
     txPolygon (body, 4);
 
-    txSetFillColor (RGB (255, 182, 193));
+    txSetFillColor (bowColor);
     POINT bow[5] = {{x, ROUND (y - 30*sizeY)}, {ROUND (x + 15*sizeX), ROUND (y - 25*sizeY)},
                     {ROUND (x + 15*sizeX), ROUND (y - 40*sizeY)}, {ROUND (x - 15*sizeX), ROUND (y - 25*sizeY)},
                     {ROUND (x - 15*sizeX), ROUND (y - 40*sizeY)}};
     txPolygon (bow, 5);
 
-    txLine (x - 5 + locationHand,           y,            x - (35 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
+    txLine (x - 5 + locationHand, y,            x - (35 + legsDistanceX + HandRDistance)*sizeX +  5*locationHand, y + (30 - rHandUp)*sizeY);
 
-    txLine (x - 5*sizeX,                    y + 50*sizeY, x - (5 + legsDistanceX)*sizeX,                                    y + (80 + legsDistanceY) *sizeY);
-    txLine (x + 5*sizeX,                    y + 50*sizeY, x + (5 + legsDistanceX)*sizeX,                                    y + (80 - legsDistanceY)*sizeY);
+    txLine (x - 5*sizeX,          y + 50*sizeY, x - (5 + legsDistanceX)*sizeX,                                    y + (80 + legsDistanceY) *sizeY);
+    txLine (x + 5*sizeX,          y + 50*sizeY, x + (5 + legsDistanceX)*sizeX,                                    y + (80 - legsDistanceY)*sizeY);
 
     txSetFillColor (RGB (255, 228, 196));
     txCircle       (x, y - 15*sizeY, 15);
