@@ -95,6 +95,18 @@ void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
     txCircle       (x, y - 15*sizeY, 15);
     }
 
+//{=============================================================================
+//! –исуем ћашину
+//!
+//! @param x                   х-координата капота машины
+//! @param y                   у-координата капота машины
+//! @param sizeX               размер машины по оси ’
+//! @param sizeY               размер машины по оси Y
+//! @param COLORREF carColor   цвет машины
+//! @param movewheel           движение колес оси Y
+//!
+//}==============================================================================
+
 void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel)
     {
     txSetColor     (RGB (  0,   0,   0), 3);
@@ -120,7 +132,23 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int m
     txCircle       (x + 170*sizeX, y + 40*sizeY - movewheel, 10);
     }
 
-void DrawSun (int x, int y, double sizeX, double sizeY, COLORREF bodyColor, int smail, double surprise, double lengthray, int brow)
+//{=============================================================================
+//! –исуем —олнце
+//!
+//! @param x                   х-координата центра солнца
+//! @param y                   у-координата центра солнца
+//! @param sizeX               размер солнца по оси ’
+//! @param sizeY               размер солнца по оси Y
+//! @param COLORREF bodyColor  цвет солнца
+//! @param smail               движение рта
+//! @param surprise            изменение размера зрачков
+//! @param lengthray           измененеие размера лучей
+//! @param brow                движение бровей
+//!
+//}=============================================================================
+
+void DrawSun (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
+              int smail, double surprise, double lengthray, int brow)
     {
     txSetColor     (bodyColor, 3);
     txSetFillColor (bodyColor);
