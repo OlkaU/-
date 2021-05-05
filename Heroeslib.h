@@ -1,10 +1,10 @@
 //{===========================================================================
 //! @brief  Бибилиотека героев
 //!
-//! @author   Усова Ольга,
-//!           г. Соликамск, МАОУ "ООШ № 4"
+//! @author Усова Ольга,
+//!        г. Соликамск, МАОУ "ООШ № 4"
 //!
-//! @date      2021
+//! @date   2021
 //!
 //!
 //}===========================================================================
@@ -12,16 +12,21 @@
 
 #include "TXlib.h"
 
+
 void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
                        int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
+
 void DrawGirl          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
                        int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
                        int HandRDistance = 0, int HandLDistance = 0,
                        COLORREF bodyColor = RGB (255, 0, 255),COLORREF bowColor = RGB (255, 182, 193));
+
 void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel = 0);
+
 void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
                        int smail,    double surprise, double lengthray, int brow);
+
 
 
 //{=============================================================================
@@ -40,7 +45,14 @@ void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyC
 //! @param HandLDistance        движение левой руки лево-право
 //! @param COLORREF bodyColor   цвет одежды Мальчика
 //!
+//! @par Пример использования
+//!
+//! @code
+//!         DrawMan (550, 300, 1, 1, 0, 0, 0, 60, 60, 0, 0, RGB (0, 255, 0);
+//! @endcode
+//!
 //}=============================================================================
+
 
 void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int legsDistanceY,
               int locationHand, int rHandUp, int lHandUp, int HandRDistance, int HandLDistance,
@@ -76,6 +88,12 @@ void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
 //! @param HandLDistance       движение левой руки лево-право
 //! @param COLORREF bodyColor  цвет платья Девочки
 //! @param COLORREF bowColor   цвет бантика Девочки
+//!
+//! @par Пример использования
+//!
+//! @code
+//!         DrawGirl (600, 250, 1, 1, 0, 0, 0, 0, 0, 0, 0, RGB (255, 255, 0), RGB (220, 20, 60);
+//! @endcode
 //!
 //}=============================================================================
 
@@ -117,6 +135,12 @@ void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
 //! @param COLORREF carColor    цвет машины
 //! @param movewheel            движение колес оси Y
 //!
+//! @par Пример использования
+//!
+//! @code
+//!         DrawCar (600, 350, 1, 1, RGB (255, 255, 0), 0);
+//! @endcode
+//!
 //}==============================================================================
 
 void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel)
@@ -155,7 +179,13 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int m
 //! @param smail                движение рта
 //! @param surprise             изменение размера зрачков
 //! @param lengthray            измененеие размера лучей
-//! @param brow                 Sдвижение бровей
+//! @param brow                 движение бровей
+//!
+//! @par Пример использования
+//!
+//! @code
+//!        DrawSun (1150, 50, 1, 1, RGB (255, 255, 0), 5, 0, 1, 5);
+//! @endcode
 //!
 //}=============================================================================
 
