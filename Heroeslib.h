@@ -1,5 +1,14 @@
 //{===========================================================================
+//! @mainpage
+//!
 //! @brief  Бибилиотека героев
+//!
+//! эта библиотека была создана в ...
+//!
+//! @par Функции
+//!     - @ref DrawMan ()
+//!     - @ref DrawGirl ()
+//!
 //!
 //! @author Усова Ольга,
 //!        г. Соликамск, МАОУ "ООШ № 4"
@@ -10,22 +19,22 @@
 //}===========================================================================
 
 
-#include "TXlib.h"
+#include "TXLib.h"
 
 
-void DrawMan           (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
-                       int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
-                       int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
+void DrawMan  (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
+               int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
+               int HandRDistance = 0, int HandLDistance = 0, COLORREF bodyColor = RGB (0, 191, 255));
 
-void DrawGirl          (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
-                       int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
-                       int HandRDistance = 0, int HandLDistance = 0,
-                       COLORREF bodyColor = RGB (255, 0, 255),COLORREF bowColor = RGB (255, 182, 193));
+void DrawGirl (int x, int y, double sizeX, double sizeY, int legsDistanceX = 0, int legsDistanceY = 0,
+               int locationHand = 0, int rHandUp = 0, int lHandUp = 0,
+               int HandRDistance = 0, int HandLDistance = 0,
+               COLORREF bodyColor = RGB (255, 0, 255),COLORREF bowColor = RGB (255, 182, 193));
 
-void DrawCar           (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel = 0);
+void DrawCar  (int x, int y, double sizeX, double sizeY, COLORREF carColor, int movewheel = 0);
 
-void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
-                       int smail,    double surprise, double lengthray, int brow);
+void DrawSun  (int x, int y, double sizeX, double sizeY, COLORREF bodyColor,
+              int smail,    double surprise, double lengthray, int brow);
 
 
 
@@ -43,7 +52,7 @@ void DrawSun           (int x, int y, double sizeX, double sizeY, COLORREF bodyC
 //! @param lHandUp              движение левой руки вверх-вниз
 //! @param HandRDistance        движение правой руки лево-право
 //! @param HandLDistance        движение левой руки лево-право
-//! @param COLORREF bodyColor   цвет одежды Мальчика
+//! @param bodyColor            цвет одежды Мальчика
 //!
 //! @par Пример использования
 //!
@@ -86,8 +95,8 @@ void DrawMan (int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
 //! @param lHandUp             движение левой руки вверх-вниз
 //! @param HandRDistance       движение правой руки лево-право
 //! @param HandLDistance       движение левой руки лево-право
-//! @param COLORREF bodyColor  цвет платья Девочки
-//! @param COLORREF bowColor   цвет бантика Девочки
+//! @param bodyColor           цвет платья Девочки
+//! @param bowColor            цвет бантика Девочки
 //!
 //! @par Пример использования
 //!
@@ -132,7 +141,7 @@ void DrawGirl(int x, int y, double sizeX, double sizeY, int legsDistanceX, int l
 //! @param y                    у-координата капота машины
 //! @param sizeX                размер машины по оси Х
 //! @param sizeY                размер машины по оси Y
-//! @param COLORREF carColor    цвет машины
+//! @param carColor             цвет машины
 //! @param movewheel            движение колес оси Y
 //!
 //! @par Пример использования
@@ -175,7 +184,7 @@ void DrawCar (int x, int y, double sizeX, double sizeY, COLORREF carColor, int m
 //! @param y                    у-координата центра солнца
 //! @param sizeX                размер солнца по оси Х
 //! @param sizeY                размер солнца по оси Y
-//! @param COLORREF bodyColor   цвет солнца
+//! @param bodyColor            цвет солнца
 //! @param smail                движение рта
 //! @param surprise             изменение размера зрачков
 //! @param lengthray            измененеие размера лучей
