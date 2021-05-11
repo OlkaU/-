@@ -11,6 +11,8 @@
 
 #include "TXlib.h"
 #include "Heroeslib.h"
+#include "SvetlanaLib.h"
+
 
 void DrawBand_Polosa   (int x, int y, double sizeX, double sizeY);
 void DrawCloud_Oblako  (int x, int y, double sizeX, double sizeY, COLORREF bodyColor = RGB (255, 255, 255));
@@ -31,6 +33,7 @@ void SceneRed_Sun_Cener();
 void SceneYellow_Cener ();
 void SceneGreen_Cener  ();
 void Scene_End         ();
+void Scene_New         ();
 
 void Start             ();
 void StepForward       ();
@@ -39,6 +42,10 @@ void Stepback          ();
 void YellowLight       ();
 void Transition        ();
 void Finish            ();
+void Other             ();
+void Rearwards         ();
+void Torocket          ();
+void Flight            ();
 void FinishTitles      ();
 
 
@@ -55,6 +62,10 @@ int main ()
     YellowLight ();
     Transition ();
     Finish ();
+    Other ();
+    Rearwards();
+    Torocket();
+    Flight();
     FinishTitles() ;
 
     txEnd ();
@@ -109,6 +120,13 @@ void Scene_End ()
     DrawRoad ();
     DrawSignal (605, 250, RGB (250, 0, 0));
     DrawSun (1150, 50, 1, 1, RGB (255, 255, 0), 1, 0, 1, 1);
+    }
+
+void Scene_New ()
+    {
+    DrawForest ();
+    DrawRoad ();
+    //DrawSun (1150, 50, 1, 1, RGB (255, 255, 0), 1, 0, 1, 1);
     }
 
 //}--------------------------------------------------------
@@ -336,6 +354,94 @@ void Finish ()
     txSleep (3000);
     }
 
+void Other ()
+    {
+    int t = 0;
+
+    while (t <= 100)
+        {
+        txClear ();
+        Scene_New ();
+
+        DrawMalchikIVAN (50 + t*5, 500, 1.7, 1.7, 2.5,  2,  2,  3);
+        DrawDevohkaLIZA ( 0 + t*5, 550, 1.7, 1.7,  10, 10, 10, 10, 0.5, 0.25, 0.5);
+
+        DrawCot    (450, 250, 0.3, 0.3, TX_BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        DrawRaketa (700, 200, 2,     2);
+
+        txSetFillColor (RGB (176, 224, 230));
+
+        txSleep (100);
+        t++;
+        }
+
+    }
+
+void Rearwards()
+    {
+    int t = 0;
+
+    while (t <= 100)
+        {
+        txClear ();
+        Scene_New ();
+
+        DrawMalchikIVAN (550, 500 - t*3, 1.7, 1.7, 2.5,  2,  2,  3);
+        DrawDevohkaLIZA (500, 550 - t*3, 1.7, 1.7,  10, 10, 10, 10, 0.5, 0.25, 0.5);
+
+        DrawCot    (450, 250, 0.3, 0.3, TX_BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        DrawRaketa (700, 200,   2,   2);
+
+        txSetFillColor (RGB (176, 224, 230));
+
+        txSleep (100);
+        t++;
+        }
+    }
+
+void Torocket()
+    {
+     int t = 0;
+
+    while (t <= 100)
+        {
+        txClear ();
+        Scene_New ();
+
+        DrawMalchikIVAN (550 + t*1.5, 200, 1.7, 1.7, 2.5,  2,  2,  3);
+        DrawDevohkaLIZA (500,         250, 1.7, 1.7,  10, 10, 10, 10, 0.5, 0.25, 0.5);
+
+        DrawCot    (250, 250, 0.50, 0.50, TX_BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        DrawRaketa (700, 200, 2,       2);
+
+        txSetFillColor (RGB (176, 224, 230));
+
+        txSleep (100);
+        t++;
+        }
+    }
+
+void Flight()
+    {
+    int t = 0;
+
+    while (t <= 200)
+        {
+        txClear ();
+        Scene_New ();
+
+        DrawDevohkaLIZA (500, 250, 1.7, 1.7, 10, 10, 10, 10, 0.5, 0.25, 0.5);
+
+        DrawCot (250, 250, 0.50, 0.50, TX_BLACK, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        DrawRaketa (700, 200 - t*2, 2, 2);
+
+        txSetFillColor (RGB (176, 224, 230));
+
+        txSleep (100);
+        t++;
+        }
+    }
+
 void FinishTitles ()
     {
     int t = 0;
@@ -343,7 +449,7 @@ void FinishTitles ()
     while (t <= 85)
         {
         txClear ();
-        Scene_End ();
+        Scene_New ();
 
         txSetTextAlign (TA_CENTER);
         txSetColor     (TX_WHITE);
@@ -353,7 +459,7 @@ void FinishTitles ()
 
         txTextOut      (1300 - t * 4, 590, "учитель информатики");
 
-        txTextOut      (1300 - t * 4, 630, "МАОУ ООШ №4 г. Соликамск");
+        txTextOut      (1300 - t * 4, 630, "МАОУ ООШ №4, Пермский край");
 
         txSetFillColor (RGB (176, 224, 230));
 
